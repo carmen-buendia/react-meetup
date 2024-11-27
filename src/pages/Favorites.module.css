@@ -1,0 +1,33 @@
+.favoriteList {
+  list-style: none;
+  padding: 0;
+}
+
+.favoriteItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.favoriteItem img {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.favoriteItem h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.favoriteItem p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.favoriteItem address {
+  font-style: normal;
+  font-size: 12px;
+}
