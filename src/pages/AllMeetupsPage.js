@@ -1,4 +1,3 @@
-// components/AllMeetupsPage.js
 import React from "react";
 import MeetupItem from "../components/meetups/MeetupItem";
 import { useFavorites } from "../context/FavoritesContext";
