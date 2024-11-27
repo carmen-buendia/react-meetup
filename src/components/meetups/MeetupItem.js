@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useFavorites } from "../../context/FavoritesContext";
+import React, { useState, useEffect, useContext } from "react";
+import { FavoritesContext } from "../../context/FavoritesContext";
 import classes from "./MeetupItem.module.css";
 import Card from "../ui/Card";
 
 export default function MeetupItem({ meetup }) {
-  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const { favorites, addFavorite, removeFavorite } =
+    useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
