@@ -1,30 +1,28 @@
-import { ALL_MEETUP_PAGE, FAVORITES_PAGE, NEW_MEETUP_PAGE } from "./../../utils/constants";
-
+import React from "react";
+import { Link } from "react-router-dom";
+import { useFavorites } from "../../context/FavoritesContext";
 import classes from "./MainNavigation.module.css";
+import { navLinks } from "../../utils/navLinks";
 
-export default function MainNavigation({ setPage }) {
+export default function MainNavigation() {
+  const { favorites } = useFavorites(); // Get favorites from context
+  const favoritesCount = favorites.length; // Get the number of favorites
+
   return (
     <header className={classes.header} data-test="navigation-header">
       <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>
-          <li>
-            <a href="#" onClick={() => setPage(ALL_MEETUP_PAGE)}>
-              All Meetups
-            </a>
-          </li>
-
-          <li>
-            <a href="#" onClick={() => setPage(NEW_MEETUP_PAGE)}>
-              Add New Meetup
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={() => setPage(FAVORITES_PAGE)}>
-              My Favorites
-              <span className={classes.badge}>{0}</span>
-            </a>
-          </li>
+          {navLinks.map(({ to, text, testId }) => (
+            <li key={to}>
+              <Link to={to} data-test={testId}>
+                {text}
+                {to === "/favorites" && (
+                  <span className={classes.badge}>{favoritesCount}</span>
+                )}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
