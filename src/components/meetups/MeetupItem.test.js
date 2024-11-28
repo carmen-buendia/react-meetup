@@ -1,14 +1,13 @@
-/* eslint-disable testing-library/no-debugging-utils */
 import React from "react";
 import { mount } from "enzyme";
 import MeetupItem from "./MeetupItem";
 import { FavoritesContext } from "../../context/FavoritesContext";
-
 const mockMeetup = {
   id: "m1",
   title: "Test Meetup",
-  image: "https://example.com/image.jpg",
-  address: "123 Test Street",
+  image:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
+  address: "Meetupstreet 5, 12345 Meetup City",
   description: "This is a test description.",
 };
 
@@ -22,7 +21,7 @@ describe("<MeetupItem />", () => {
     wrapper = mount(
       <FavoritesContext.Provider
         value={{
-          favorites: [],
+          favorite: [],
           addFavorite: mockAddFavorite,
           removeFavorite: mockRemoveFavorite,
         }}

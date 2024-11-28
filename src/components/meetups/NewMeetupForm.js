@@ -1,39 +1,38 @@
 import React, { useState } from "react";
 import Card from "../ui/Card";
 import classes from "./NewMeetupForm.module.css";
-import { useMeetups } from "../../context/MeetupsContext";
+import { useMeetup } from "../../context/MeetupsContext";
 
 export default function NewMeetupForm() {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredImage, setEnteredImage] = useState("");
-  const [enteredAddress, setEnteredAddress] = useState("");
-  const [enteredDescription, setEnteredDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+  const [address, setAddress] = useState("");
+  const [description, setDescription] = useState("");
 
-  const { addMeetup } = useMeetups();
+  const { addMeetup } = useMeetup();
 
-  const titleChangeHandler = (event) => setEnteredTitle(event.target.value);
-  const imageChangeHandler = (event) => setEnteredImage(event.target.value);
-  const addressChangeHandler = (event) => setEnteredAddress(event.target.value);
+  const titleChangeHandler = (event) => setTitle(event.target.value);
+  const imageChangeHandler = (event) => setImage(event.target.value);
+  const addressChangeHandler = (event) => setAddress(event.target.value);
   const descriptionChangeHandler = (event) =>
-    setEnteredDescription(event.target.value);
+    setDescription(event.target.value);
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     const newMeetup = {
-      title: enteredTitle,
-      image: enteredImage,
-      address: enteredAddress,
-      description: enteredDescription,
+      id: Math.random().toString(),
+      title: title,
+      image: image,
+      address: address,
+      description: description,
     };
     addMeetup(newMeetup);
 
-    window.location.href = "/meetups";
-
-    setEnteredTitle("");
-    setEnteredImage("");
-    setEnteredAddress("");
-    setEnteredDescription("");
+    setTitle("");
+    setImage("");
+    setAddress("");
+    setDescription("");
   };
 
   return (
@@ -45,7 +44,7 @@ export default function NewMeetupForm() {
             type="text"
             required
             id="title"
-            value={enteredTitle}
+            value={title}
             onChange={titleChangeHandler}
           />
         </div>
@@ -54,7 +53,7 @@ export default function NewMeetupForm() {
           <input
             type="url"
             id="image"
-            value={enteredImage}
+            value={image}
             onChange={imageChangeHandler}
           />
         </div>
@@ -64,7 +63,7 @@ export default function NewMeetupForm() {
             type="text"
             required
             id="address"
-            value={enteredAddress}
+            value={address}
             onChange={addressChangeHandler}
           />
         </div>
@@ -74,7 +73,7 @@ export default function NewMeetupForm() {
             id="description"
             required
             rows="5"
-            value={enteredDescription}
+            value={description}
             onChange={descriptionChangeHandler}
           ></textarea>
         </div>

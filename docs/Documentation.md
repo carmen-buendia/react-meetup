@@ -66,7 +66,7 @@ The `MainNavigation` component was refactored to improve code organization and r
 1. **Use of `useState` to manage form state**: Local states for each form field (title, image, address, and description) were added using the `useState` hook.
 2. **Change Handlers Implementation**: Functions such as `titleChangeHandler`, `imageChangeHandler`, `addressChangeHandler`, and `descriptionChangeHandler` were created to update the values of each form field in their respective states.
 
-3. **Use of `useMeetups` Context**: The `MeetupsContext` was integrated to access the `addMeetup` function, which is used to add a new meetup to the global state.
+3. **Use of `useMeetup` Context**: The `MeetupsContext` was integrated to access the `addMeetup` function, which is used to add a new meetup to the global state.
 
 4. **Submit Handler**: The form now handles submission through the `submitHandler` function. Upon submission, a meetup object is created with the field values and added to the context using `addMeetup`. The page then redirects to `/meetups`, and the form fields are reset to empty values.
 

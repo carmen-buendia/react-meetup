@@ -1,11 +1,11 @@
 import React from "react";
-import { useFavorites } from "../context/FavoritesContext";
+import { useFavorite } from "../context/FavoritesContext";
 import classes from "./Favorites.module.css";
 
 export default function FavoritesPage() {
-  const { favorites } = useFavorites();
+  const { favorite } = useFavorite();
 
-  if (favorites.length === 0) {
+  if (favorite.length === 0) {
     return (
       <section>
         <h1>Favorites Page</h1>
@@ -18,7 +18,7 @@ export default function FavoritesPage() {
     <section>
       <h1>Favorites Page</h1>
       <ul className={classes.favoriteList}>
-        {favorites.map((favorite) => (
+        {favorite.map((favorite) => (
           <li key={favorite.id} className={classes.favoriteItem}>
             <div>
               <img src={favorite.image} alt={favorite.title} />

@@ -3,47 +3,40 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 export const FavoritesContext = createContext();
 
 export function FavoritesProvider({ children }) {
-  const [favorites, setFavorites] = useState([]);
-  const [meetups, setMeetups] = useState([]);
+  const [favorite, setFavorite] = useState([]);
+
+  const [meetup, setMeetup] = useState([]);
 
   useEffect(() => {
-    const fetchMeetups = async () => {
+    const fetchMeetupsList = async () => {
       try {
         const response = await fetch("/data.json");
         const data = await response.json();
-        setMeetups(data);
+        setMeetup(data);
       } catch (error) {
-        console.error("Error loading the meetups", error);
+        console.error("Error loading meetups", error);
       }
     };
-
-    fetchMeetups();
+    fetchMeetupsList();
   }, []);
 
   const addFavorite = (item) => {
-    setFavorites((prevFavorites) => [...prevFavorites, item]);
+    setFavorite((favorite) => [...favorite, item]);
   };
 
   const removeFavorite = (itemId) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.filter((item) => item.id !== itemId)
-    );
+    setFavorite((favorite) => favorite.filter((item) => item.id !== itemId));
   };
 
   return (
     <FavoritesContext.Provider
-      value={{ favorites, addFavorite, removeFavorite, meetups }}
+      value={{ favorite, addFavorite, removeFavorite, meetup }}
     >
       {children}
     </FavoritesContext.Provider>
   );
 }
 
-// Hook para usar el contexto
-export const useFavorites = () => {
-  const context = useContext(FavoritesContext);
-  if (!context) {
-    throw new Error("useFavorites must be used within a FavoritesProvider");
-  }
-  return context;
+export const useFavorite = () => {
+  return useContext(FavoritesContext);
 };

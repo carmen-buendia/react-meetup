@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useFavorites } from "../../context/FavoritesContext";
+import { useFavorite } from "../../context/FavoritesContext";
 import classes from "./MainNavigation.module.css";
 import { navLinks } from "../../utils/navLinks";
 
 export default function MainNavigation() {
-  const { favorites } = useFavorites(); // Get favorites from context
-  const favoritesCount = favorites.length; // Get the number of favorites
+  const { favorite } = useFavorite();
+  const favoritesCount = favorite.length;
 
   return (
     <header className={classes.header} data-test="navigation-header">

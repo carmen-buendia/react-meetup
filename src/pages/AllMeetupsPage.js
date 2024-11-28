@@ -1,12 +1,19 @@
 import React from "react";
+
+import { useFavorite } from "../context/FavoritesContext";
+import { useMeetup } from "../context/MeetupsContext";
+
 import MeetupItem from "../components/meetups/MeetupItem";
-import { useFavorites } from "../context/FavoritesContext";
+
 import classes from "../components/meetups/MeetupList.module.css";
 
 export default function AllMeetupsPage() {
-  const { meetups } = useFavorites();
+  const { meetup: favoriteMeetups } = useFavorite();
+  const { meetup: newMetup } = useMeetup();
 
-  if (!meetups || meetups.length === 0) {
+  const allMeetups = [...favoriteMeetups, ...newMetup];
+
+  if (!allMeetups || allMeetups.length === 0) {
     return <p>No meetups available.</p>;
   }
 
@@ -14,7 +21,7 @@ export default function AllMeetupsPage() {
     <section>
       <h1>All Meetups</h1>
       <ul className={classes.list}>
-        {meetups.map((meetup) => (
+        {allMeetups.map((meetup) => (
           <MeetupItem key={meetup.id} meetup={meetup} />
         ))}
       </ul>
